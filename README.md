@@ -2,6 +2,8 @@
 
 BookNest is a full-stack online bookstore platform where users can explore books, view book details, add books to their cart and wishlist, and place orders using Cash on Delivery.
 
+---
+
 ## ✨ Features
 
 - 🏠 User-friendly Home page
@@ -17,6 +19,8 @@ BookNest is a full-stack online bookstore platform where users can explore books
 - 🆔 Automatic Order ID generation
 - 🗄️ Store orders in MongoDB
 - 📱 Responsive and clean user interface
+
+---
 
 ## 🛠️ Technologies Used
 
@@ -36,6 +40,8 @@ BookNest is a full-stack online bookstore platform where users can explore books
 - Vite
 - Nodemon
 - Git & GitHub
+
+---
 
 ## 📂 Project Structure
 
@@ -60,81 +66,80 @@ Online Bookstore Platform/
     │   └── orderRoutes.js
     ├── server.js
     └── package.json
-
 ⚙️ Installation & Setup
-1. Clone the repository
-git clone https://github.com/AishAftab098/online-bookstore
+Clone the repository
 
-2. Navigate to the project
+Bash
+git clone [https://github.com/AishAftab098/online-bookstore](https://github.com/AishAftab098/online-bookstore)
+Navigate to the project
+
+Bash
 cd "Online Bookstore Platform"
+Install frontend dependencies
 
-3. Install frontend dependencies
+Bash
 cd client
 npm install
+Start the frontend
 
-4. Start the frontend
+Bash
 npm run dev
+The frontend will run on: http://localhost:5173
 
-The frontend will run on:
-http://localhost:5173
+Install backend dependencies (Open another terminal)
 
-5. Install backend dependencies
-Open another terminal:
+Bash
 cd server
 npm install
+Configure environment variables
+Create a .env file inside the server folder and add your credentials:
 
-6. Configure environment variables
-Create a .env file inside the server folder:
+Code snippet
 MONGO_URI=your_mongodb_connection_string
 PORT=5000
+Start the backend
 
-7. Start the backend
+Bash
 npm run dev
-
-The backend will run on:
-http://localhost:5000
+The backend will run on: http://localhost:5000
 
 🛒 Order Flow
-Browse Books
-     ↓
-Add to Cart
-     ↓
-Checkout
-     ↓
-Enter Delivery Details
-     ↓
-Select Cash on Delivery
-     ↓
-Place Order
-     ↓
-Order Saved in MongoDB
-     ↓
-Order Success
+Plaintext
+Browse Books → Add to Cart → Checkout → Enter Delivery Details → Select Cash on Delivery → Place Order → Order Saved in MongoDB → Order Success
 
 💳 Payment
-Currently, the project supports Cash on Delivery (COD).
-Online payment gateway integration can be added as a future enhancement.
+Currently, the project supports Cash on Delivery (COD). Online payment gateway integration can be added as a future enhancement.
+
 🔮 Future Enhancements
-- 👤 User authentication and registration
-- 🔐 Secure login system
-- 💳 Online payment gateway integration
-- 📊 Admin dashboard
-- 📚 Admin book management
-- 📦 Order tracking
-- 🔎 Advanced book search and filtering
-- ⭐ Book ratings and reviews
-- 📧 Order confirmation emails
-👩‍💻 Author
-Aish Aftab
-📄 License
-This project was created for educational and project purposes.
+👤 User authentication and registration
 
-### ⚠️important
+🔐 Secure login system
 
-Do not push your **`.env` file to GitHub because it might contain MongoDB credentials.
+💳 Online payment gateway integration
 
-Add these in your `.gitignore` file:
+📊 Admin dashboard
 
-```gitignore
+📚 Admin book management
+
+📦 Order tracking
+
+🔎 Advanced book search and filtering
+
+⭐ Book ratings and reviews
+
+📧 Order confirmation emails
+
+⚠️ Important Security Note
+Do not push your .env file to GitHub because it contains sensitive MongoDB credentials.
+
+Make sure your root-level .gitignore file includes the following entries:
+
+Code snippet
 node_modules/
 .env
+
+👩‍💻 Author
+Aish Aftab
+
+📄 License
+This project was created for educational and project purposes.
