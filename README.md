@@ -36,6 +36,8 @@ Development Tools
 - Git & GitHub
   
 # 📂 Project Structure
+
+```text
 Online Bookstore Platform/
 │
 ├── client/
@@ -71,7 +73,7 @@ npm install
 4. Start the frontend
 npm run dev
 
-The frontend will run on:
+ The frontend will run on:
 http://localhost:5173
 
 5. Install backend dependencies
