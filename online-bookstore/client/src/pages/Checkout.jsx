@@ -45,7 +45,7 @@ const handlePayment = async (event) => {
 
   try {
     const response = await axios.post(
-      "http://localhost:5000/api/orders",
+      "https://online-bookstore-backend-v6kg.onrender.com/api/orders",
       {
         customer: formData,
         items: cartItems,
