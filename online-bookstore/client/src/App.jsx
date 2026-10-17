@@ -16,6 +16,10 @@ import { CartProvider } from "./context/CartContext";
 import { WishlistProvider } from "./context/WishlistContext";
 import Checkout from "./pages/Checkout";
 import OrderSuccess from "./pages/OrderSuccess";
+import AdminDashboard from "./components/AdminDashboard";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
+import MyOrders from "./components/MyOrders";
 function App() {
   return (
   <CartProvider>
@@ -31,6 +35,10 @@ function App() {
         <Route path="/wishlist" element={<Wishlist />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/order-success" element={<OrderSuccess />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/my-orders" element={<MyOrders />} />
+        <Route path="/admin" element={<AdminDashboard />} />
       </Routes>
       </BrowserRouter>
     </WishlistProvider>

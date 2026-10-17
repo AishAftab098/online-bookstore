@@ -1,8 +1,11 @@
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 import { useCart } from "../context/CartContext";
 import { useWishlist } from "../context/WishlistContext";
 
-const featuredBooks = [
+// Pehli wali 3 default books
+const defaultBooks = [
   {
     id: 1,
     title: "The Power of Habit",
@@ -10,6 +13,7 @@ const featuredBooks = [
     category: "Self Development",
     price: 399,
     coverClass: "cover-one",
+    image: "https://cdn.penguin.co.in/wp-content/uploads/2023/06/9781847946249.jpg",
     label: "POPULAR",
   },
   {
@@ -19,6 +23,7 @@ const featuredBooks = [
     category: "Personal Growth",
     price: 499,
     coverClass: "cover-two",
+    image: "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1655988385l/40121378.jpg",
     label: "BESTSELLER",
   },
   {
@@ -28,13 +33,26 @@ const featuredBooks = [
     category: "Fiction",
     price: 299,
     coverClass: "cover-three",
+    image: "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1483412266i/865.jpg",
     label: "CLASSIC",
   },
 ];
 
 function Home() {
+  const [featuredBooks, setFeaturedBooks] = useState(defaultBooks);
   const { addToCart } = useCart();
   const { addToWishlist } = useWishlist();
+
+  // Database se books fetch karke default books ke sath combine karna
+  useEffect(() => {
+    axios.get("http://localhost:5000/api/books")
+      .then((res) => {
+        if (res.data && res.data.length > 0) {
+          setFeaturedBooks([...defaultBooks, ...res.data]);
+        }
+      })
+      .catch((err) => console.log("Error fetching books:", err));
+  }, []);
 
   return (
     <div className="home">
@@ -203,63 +221,74 @@ function Home() {
 
         <div className="featured-grid">
 
-          {featuredBooks.map((book) => (
-            <div className="featured-book" key={book.id}>
+          {featuredBooks.map((book) => {
+            const bookId = book._id || book.id;
+            const bookImage = book.image || book.imageUrl || "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=500";
 
-              <div className={`book-cover ${book.coverClass}`}>
+            return (
+              <div className="featured-book" key={bookId}>
 
-                <span>BOOKNEST EDITION</span>
+                <div className={`book-cover ${book.coverClass || "cover-one"}`}>
+                  <img
+                    src={bookImage}
+                    alt={`${book.title} book cover`}
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "contain",
+                    }}
+                    onError={(e) => {
+                      e.target.src = "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=500";
+                    }}
+                  />
+                </div>
 
-                <strong>
-                  {book.title}
-                </strong>
+                <h3>{book.title}</h3>
 
-              </div>
+                <p>
+                  by {book.author}
+                </p>
 
-              <h3>{book.title}</h3>
+                <p>
+                  {book.category}
+                </p>
 
-              <p>
-                by {book.author}
-              </p>
+                <strong>₹{book.price}</strong>
 
-              <p>
-                {book.category}
-              </p>
+                <div className="book-buttons">
 
-              <strong>₹{book.price}</strong>
+                  {/* Sahi route path /book/:id ke sath match kiya */}
+                  <Link
+                    to={`/book/${bookId}`}
+                    className="secondary-btn"
+                  >
+                    Details →
+                  </Link>
 
-              <div className="book-buttons">
+                  <button
+                    onClick={() => {
+                      addToCart(book);
+                      alert(`${book.title} added to cart!`);
+                    }}
+                  >
+                    🛒 Add to Cart
+                  </button>
 
-                <Link
-                  to={`/book/${book.id}`}
-                  className="secondary-btn"
-                >
-                  Details →
-                </Link>
+                </div>
 
                 <button
+                  className="wishlist-btn"
                   onClick={() => {
-                    addToCart(book);
-                    alert(`${book.title} added to cart!`);
+                    addToWishlist(book);
+                    alert(`${book.title} added to wishlist!`);
                   }}
                 >
-                  🛒 Add to Cart
+                  ♡ Add to Wishlist
                 </button>
 
               </div>
-
-              <button
-                className="wishlist-btn"
-                onClick={() => {
-                  addToWishlist(book);
-                  alert(`${book.title} added to wishlist!`);
-                }}
-              >
-                ♡ Add to Wishlist
-              </button>
-
-            </div>
-          ))}
+            );
+          })}
 
         </div>
 

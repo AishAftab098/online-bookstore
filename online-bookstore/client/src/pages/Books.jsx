@@ -11,8 +11,7 @@ const books = [
     author: "Charles Duhigg",
     price: 399,
     category: "Self Development",
-    emoji: "📘",
-    color: "book-blue",
+    image: "https://cdn.penguin.co.in/wp-content/uploads/2023/06/9781847946249.jpg",
   },
   {
     id: 2,
@@ -20,8 +19,7 @@ const books = [
     author: "James Clear",
     price: 499,
     category: "Self Development",
-    emoji: "📗",
-    color: "book-green",
+    image: "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1655988385l/40121378.jpg",
   },
   {
     id: 3,
@@ -29,8 +27,7 @@ const books = [
     author: "Paulo Coelho",
     price: 299,
     category: "Fiction",
-    emoji: "📙",
-    color: "book-orange",
+    image: "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1483412266i/865.jpg",
   },
   {
     id: 4,
@@ -38,8 +35,7 @@ const books = [
     author: "Robert C. Martin",
     price: 599,
     category: "Technology",
-    emoji: "💻",
-    color: "book-dark",
+    image: "https://m.media-amazon.com/images/I/71T7aD3EOTL._UF1000,1000_QL80_.jpg",
   },
   {
     id: 5,
@@ -47,8 +43,7 @@ const books = [
     author: "Morgan Housel",
     price: 449,
     category: "Finance",
-    emoji: "📕",
-    color: "book-red",
+    image: "https://m.media-amazon.com/images/I/81eQqmEj65L._UF1000,1000_QL80_.jpg",
   },
   {
     id: 6,
@@ -56,8 +51,7 @@ const books = [
     author: "Hector Garcia",
     price: 349,
     category: "Self Development",
-    emoji: "📒",
-    color: "book-yellow",
+    image: "https://m.media-amazon.com/images/I/71lJBs5MNlL._AC_UF1000,1000_QL80_.jpg",
   },
 ];
 
@@ -158,10 +152,24 @@ function Books() {
             className="book-card"
             key={book.id}
           >
-            <div className={`book-card-cover ${book.color}`}>
-              <span>{book.emoji}</span>
-              <h2>{book.title}</h2>
-              <small>{book.author}</small>
+            <div className="book-card-cover">
+              {book.image ? (
+                <img
+                  src={book.image}
+                  alt={`${book.title} book cover`}
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "contain",
+                  }}
+                />
+              ) : (
+                <>
+                  <span>{book.emoji}</span>
+                  <h2>{book.title}</h2>
+                  <small>{book.author}</small>
+                </>
+              )}
             </div>
 
             <div className="book-card-info">
