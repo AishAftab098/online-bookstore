@@ -54,9 +54,10 @@ function AdminDashboard() {
   const fetchBooks = async () => {
     try {
       const res = await axios.get(API_URL);
-      setBooks(res.data);
+      setBooks(Array.isArray(res.data) ? res.data : []);
     } catch (err) {
       console.error("Error fetching books:", err);
+      setBooks([]);
     }
   };
 
