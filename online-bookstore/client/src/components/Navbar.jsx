@@ -89,7 +89,9 @@ function Navbar() {
           <Link to="/books">Books</Link>
           <Link to="/books">Explore</Link>
           <Link to="/my-orders">My Orders</Link>
-          <Link to="/admin">Admin Dashboard</Link>
+          {localStorage.getItem("isAdminAuthenticated") === "true" && (
+            <Link to="/admin">Admin Dashboard</Link>
+          )}
         </div>
 
         <div className="nav-actions">
@@ -100,15 +102,15 @@ function Navbar() {
           {user ? (
             <div style={{ display: "flex", alignItems: "center", gap: "10px", marginLeft: "15px" }}>
               <span style={{ fontWeight: "600", fontSize: "14px" }}>👤 {user.name}</span>
-              <button 
-                onClick={handleLogout} 
-                style={{ 
-                  background: "#dc3545", 
-                  color: "#fff", 
-                  border: "none", 
-                  padding: "5px 12px", 
-                  borderRadius: "15px", 
-                  cursor: "pointer", 
+              <button
+                onClick={handleLogout}
+                style={{
+                  background: "#dc3545",
+                  color: "#fff",
+                  border: "none",
+                  padding: "5px 12px",
+                  borderRadius: "15px",
+                  cursor: "pointer",
                   fontWeight: "600",
                   fontSize: "13px"
                 }}
@@ -118,14 +120,14 @@ function Navbar() {
             </div>
           ) : (
             <>
-              <button 
-                onClick={() => setShowLoginModal(true)} 
+              <button
+                onClick={() => setShowLoginModal(true)}
                 style={{ marginLeft: "15px", background: "#111", color: "#fff", border: "none", padding: "6px 16px", borderRadius: "20px", cursor: "pointer", fontWeight: "600" }}
               >
                 Login
               </button>
-              <button 
-                onClick={() => setShowSignupModal(true)} 
+              <button
+                onClick={() => setShowSignupModal(true)}
                 style={{ marginLeft: "10px", background: "#111", color: "#fff", border: "none", padding: "6px 16px", borderRadius: "20px", cursor: "pointer", fontWeight: "600" }}
               >
                 Signup
