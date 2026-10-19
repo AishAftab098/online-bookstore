@@ -45,7 +45,7 @@ function Home() {
 
   // Database se books fetch karke default books ke sath combine karna
   useEffect(() => {
-    axios.get("http://localhost:5000/api/books")
+    axios.get("https://online-bookstore-backend-v6kg.onrender.com/api/books")
       .then((res) => {
         if (res.data && res.data.length > 0) {
           setFeaturedBooks([...defaultBooks, ...res.data]);
