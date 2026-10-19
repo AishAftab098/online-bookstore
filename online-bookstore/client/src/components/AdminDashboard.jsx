@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 // 🌐 Environment Variable configuration for API URL (Local vs Production)
-const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000/api/books";
+const API_URL = "https://online-bookstore-backend-v6kg.onrender.com/api/books";
 
 function AdminDashboard() {
   // Security & Authentication State
