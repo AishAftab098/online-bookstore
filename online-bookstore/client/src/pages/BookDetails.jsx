@@ -88,7 +88,7 @@ function BookDetails() {
     setLoading(true);
 
     // 1. Pehle saari books le aao (recommended list ke liye)
-    axios.get("http://localhost:5000/api/books")
+    axios.get("https://online-bookstore-backend-v6kg.onrender.com/api/books")
       .then((res) => {
         if (res.data && res.data.length > 0) {
           setAllBooks([...defaultBooks, ...res.data]);
@@ -97,7 +97,7 @@ function BookDetails() {
       .catch((err) => console.log("Error fetching all books:", err));
 
     // 2. Phir specific book details fetch karo
-    axios.get(`http://localhost:5000/api/books/${id}`)
+    axios.get(`https://online-bookstore-backend-v6kg.onrender.com/api/books/${id}`)
       .then((res) => {
         setBook(res.data);
         setLoading(false);
