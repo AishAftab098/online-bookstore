@@ -46,6 +46,17 @@ router.post("/", async (req, res) => {
       });
     }
 
+    // Get all orders route
+    router.get("/", async (req, res) => {
+      try {
+        const orders = await Order.find().sort({ createdAt: -1 }); // Naye orders sabse upar dikhenge
+        res.status(200).json(orders);
+      } catch (error) {
+        console.error("Fetch orders error:", error);
+        res.status(500).json({ message: "Server error while fetching orders" });
+      }
+    });
+
     // Recalculate total from submitted items for this demo.
     const calculatedTotal = items.reduce(
       (sum, item) => sum + item.price * item.quantity,
