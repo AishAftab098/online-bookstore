@@ -23,7 +23,6 @@ function Footer() {
           gap: "20px",
         }}
       >
-        {/* Brand Name & Tagline */}
         <div style={{ textAlign: "center" }}>
           <h2
             style={{
@@ -49,7 +48,6 @@ function Footer() {
           </p>
         </div>
 
-        {/* Quick Navigation Pills */}
         <div
           style={{
             display: "flex",
@@ -63,7 +61,6 @@ function Footer() {
             { name: "Home 🏠", path: "/" },
             { name: "Books 📖", path: "/books" },
             { name: "My Orders 📦", path: "/my-orders" },
-            { name: "Wishlist ❤️", path: "/wishlist" },
           ].map((item, index) => (
             <Link
               key={index}
@@ -77,7 +74,6 @@ function Footer() {
                 padding: "8px 16px",
                 borderRadius: "20px",
                 border: "1px solid rgba(255, 255, 255, 0.1)",
-                transition: "all 0.3s ease",
               }}
             >
               {item.name}
@@ -85,7 +81,6 @@ function Footer() {
           ))}
         </div>
 
-        {/* Divider Line */}
         <div
           style={{
             width: "100%",
@@ -96,7 +91,6 @@ function Footer() {
           }}
         />
 
-        {/* Copyright & Developer Tag */}
         <div
           style={{
             textAlign: "center",
