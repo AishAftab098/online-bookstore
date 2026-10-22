@@ -315,7 +315,7 @@ function AdminDashboard() {
 
             type="password"
 
-            placeholder="Enter Admin Key (Default: admin123)"
+            placeholder="Enter Admin Key"
 
             value={adminPasscode}
 
