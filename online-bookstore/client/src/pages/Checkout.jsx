@@ -29,45 +29,53 @@ function Checkout() {
     });
   };
 
-  
-const handlePayment = async (event) => {
-  event.preventDefault();
 
-  if (cartItems.length === 0) {
-    alert("Your cart is empty!");
-    return;
-  }
+  const handlePayment = async (event) => {
+    event.preventDefault();
 
-  if (paymentMethod !== "cod") {
-    alert("Currently, only Cash on Delivery is available.");
-    return;
-  }
+    // 🔒 Login Check: Pehle check karein ki user logged-in hai ya nahi
+    const userToken = localStorage.getItem("token") || localStorage.getItem("user");
+    if (!userToken) {
+      alert("❌ Please login to place an order!");
+      navigate("/login");
+      return;
+    }
 
-  try {
-    const response = await axios.post(
-      "https://online-bookstore-backend-v6kg.onrender.com/api/orders",
-      {
-        customer: formData,
-        items: cartItems,
-        paymentMethod: "Cash on Delivery",
-      }
-    );
+    if (cartItems.length === 0) {
+      alert("Your cart is empty!");
+      return;
+    }
 
-    localStorage.setItem(
-      "booknest-last-order",
-      JSON.stringify(response.data.order)
-    );
+    if (paymentMethod !== "cod") {
+      alert("Currently, only Cash on Delivery is available.");
+      return;
+    }
 
-    navigate("/order-success");
-  } catch (error) {
-    console.error("Order error:", error);
+    try {
+      const response = await axios.post(
+        "https://online-bookstore-backend-v6kg.onrender.com/api/orders",
+        {
+          customer: formData,
+          items: cartItems,
+          paymentMethod: "Cash on Delivery",
+        }
+      );
 
-    alert(
-      error.response?.data?.message ||
-      "Order save nahi hua. Please check whether the backend is running."
-    );
-  }
-};
+      localStorage.setItem(
+        "booknest-last-order",
+        JSON.stringify(response.data.order)
+      );
+
+      navigate("/order-success");
+    } catch (error) {
+      console.error("Order error:", error);
+
+      alert(
+        error.response?.data?.message ||
+        "Order failed. Please check whether the backend is running."
+      );
+    }
+  };
 
 
   if (cartItems.length === 0) {
