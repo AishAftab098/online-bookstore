@@ -8,11 +8,11 @@ import Books from "./pages/Books";
 import BookDetails from "./pages/BookDetails";
 import Cart from "./pages/Cart";
 import Checkout from "./pages/Checkout";
-import MyOrders from "./pages/MyOrders";
+import MyOrders from "./components/MyOrders";
 import Wishlist from "./pages/Wishlist";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
-import AdminDashboard from "./pages/AdminDashboard";
+import AdminDashboard from "./components/AdminDashboard";
 
 function App() {
   return (
