@@ -73,8 +73,9 @@ function AdminDashboard() {
   const handleAdminLogin = (e) => {
 
     e.preventDefault();
+    const secureAdminKey = import.meta.env.VITE_ADMIN_PASSCODE || "admin123";
 
-    if (adminPasscode === "admin123") {
+    if (adminPasscode === secureAdminKey) {
 
       setIsAdminLoggedIn(true);
 
